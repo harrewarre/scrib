@@ -2,10 +2,10 @@ const _previousVersion = "scrib_v1";
 const _version = "scrib_v1";
 
 const _staticFiles = [
-    "/",
-    "/favicon.ico",
-    "/manifest.json",
-    "/clipboard.png"
+    "/scrib/",
+    "/scrib/favicon.ico",
+    "/scrib/manifest.json",
+    "/scrib/clipboard.png"
 ];
 
 self.addEventListener("install", (event) => {
