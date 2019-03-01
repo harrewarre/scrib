@@ -5,6 +5,7 @@ const _staticFiles = [
     "/scrib/",
     "/scrib/favicon.ico",
     "/scrib/manifest.json",
+    "/scrib/clipboard_144x144.png",
     "/scrib/clipboard_192x192.png",
     "/scrib/clipboard_512x512.png"
 ];
