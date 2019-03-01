@@ -18,12 +18,12 @@
     <meta name="msapplication-starturl" content="/">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    
+
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image.png" sizes="192x192" href="clipboard.png">
     <link rel="apple-touch-icon" type="image.png" sizes="192x192" href="clipboard.png">
-    
-    <title>Scrib - Just start typing!</title>
+
+    <title>Scrib - Simple notepad. Just start typing!</title>
 
     <style>
         * {
@@ -108,7 +108,7 @@
     <div class="app">
         <h1 class="app__title">
             scrib
-            <small class="app_title__subtitle">just start typing!</small>
+            <small class="app_title__subtitle">A simple notepad, just start typing!</small>
         </h1>
         <main class="app__editor" id="notes" contenteditable="true" data-placeholder="Type your notes here..."></main>
         <div class="app__save-notification app__save-notification--hidden" id="saveNotification">saved</div>
@@ -138,7 +138,11 @@
             }, saveTimeout);
         });
 
-        noteElem.focus()
+        noteElem.focus();
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("worker.js");
+        }
     </script>
 </body>
 
