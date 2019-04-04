@@ -19,131 +19,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Scrib. A simple notepad running in your browser">
 
+    <link rel="stylesheet" href="app.css">
+
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image.png" sizes="192x192" href="clipboard.png">
-    <link rel="apple-touch-icon" type="image.png" sizes="192x192" href="clipboard.png">
+    <link rel="icon" type="image.png" sizes="192x192" href="clipboard_192x192.png">
+    <link rel="apple-touch-icon" type="image.png" sizes="192x192" href="clipboard_192x192.png">
 
     <title>Scrib - A Simple notepad, just start typing!</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html,
-        body {
-            overflow: hidden;
-        }
-
-        .app {
-            height: 100vh;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            min-width: 200px;
-        }
-
-        .app__title {
-            background-color: purple;
-            color: yellow;
-            font-size: 1.25rem;
-            flex: 0 0 3.5rem;
-            padding: 0 1rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            box-shadow: 0 2px 5px #666;
-            z-index: 10;
-        }
-
-        .app_title__subtitle {
-            font-weight: 300;
-            font-size: .75rem;
-        }
-
-        .app__editor {
-            flex: 1 1 auto;
-            background-color: #eee;
-            overflow-y: scroll;
-            padding: 1rem;
-            font-size: 1.5rem;
-            border-left: 1px solid #666;
-            border-right: 1px solid #666;
-        }
-
-        .app__editor:empty::before {
-            content: attr(data-placeholder);
-            color: #666;
-        }
-
-        .app__save-notification {
-            background-color: purple;
-            color: yellow;
-            font-weight: bold;
-            font-size: 1rem;
-            position: absolute;
-            bottom: 0;
-            right: 50%;
-            width: 4rem;
-            margin-right: -2rem;
-            text-align: center;
-            border-top-left-radius: .5rem;
-            border-top-right-radius: .5rem;
-            transition: bottom .15s ease-in;
-        }
-
-        .app__save-notification--hidden {
-            bottom: -1.25rem;
-            transition: bottom .1b5s ease-in;
-        }
-    </style>
-
 </head>
 
 <body>
     <div class="app">
-        <h1 class="app__title">
-            scrib
-            <small class="app_title__subtitle">A simple notepad, just start typing!</small>
-        </h1>
-        <main class="app__editor" id="notes" contenteditable="true" data-placeholder="Type your notes here..."></main>
+        <section class="notelist notelist--hidden" id="noteList">
+            <div class="notes">
+                <h1>Notes</h1>
+            </div>
+        </section>
+        <header class="app__header">
+            <h1 class="app__title">
+                scrib
+                <small class="app_title__subtitle">A simple notepad, just start typing!</small>
+            </h1>
+            <button class="menu__toggle" id="menuToggle">&#9776;</button>
+        </header>
+        <main class="app__editor" id="notes" contenteditable="true"></main>
         <div class="app__save-notification app__save-notification--hidden" id="saveNotification">saved</div>
     </div>
-
-    <script>
-        const noteElem = document.getElementById("notes");
-        const saveNotificationElem = document.getElementById("saveNotification");
-        noteElem.innerHTML = localStorage.getItem("notes");
-
-        // Save the notes 750ms after you stop typing.
-        const saveTimeout = 750;
-        let typingTimer;
-
-        noteElem.addEventListener("keydown", (ev) => {
-            clearTimeout(typingTimer);
-            saveNotificationElem.classList.add("app__save-notification--hidden");
-        });
-
-        noteElem.addEventListener("keyup", ev => {
-            clearTimeout(typingTimer);
-            saveNotificationElem.classList.add("app__save-notification--hidden");
-            typingTimer = setTimeout(() => {
-                localStorage.setItem("notes", noteElem.innerHTML);
-                console.log("Saved!");
-                saveNotificationElem.classList.remove("app__save-notification--hidden");
-            }, saveTimeout);
-        });
-
-        noteElem.focus();
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register("worker.js");
-        }
-    </script>
+    <script src="app.js"></script>
 </body>
 
 </html>

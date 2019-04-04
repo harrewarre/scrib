@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    overflow: hidden;
+}
+
+.app {
+    height: 100vh;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+}
+
+.app__header {
+    display: flex;
+    flex-direction: row;
+    background-color: purple;
+    color: #fff;
+    padding: 1rem;
+    box-shadow: 0 2px 5px #666;
+    z-index: 10;
+}
+
+.app__title {
+    font-size: 1.25rem;
+    flex: 1 1 auto;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.app_title__subtitle {
+    font-weight: 300;
+    font-size: .75rem;
+}
+
+.app__editor {
+    flex: 1 1 auto;
+    background-color: #eee;
+    overflow-y: scroll;
+    padding: 1rem;
+    font-size: 1.5rem;
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+}
+
+.app__save-notification {
+    background-color: purple;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    width: 4rem;
+    margin-right: -2rem;
+    text-align: center;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    transition: bottom .15s ease-in;
+}
+
+.app__save-notification--hidden {
+    bottom: -1.25rem;
+    transition: bottom .1b5s ease-in;
+}
+
+.menu__toggle {
+    padding: 0;
+    flex: 0 0 2.5rem;
+    width: 2.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: none;
+    border: 0;
+    color: #fff;
+}
+
+/* --- */
+.notelist {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 90%;
+    background-color: #eee;
+    border-right: 1px solid #666;
+    box-shadow: 5px 0 15px #666;
+    z-index: 20;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    transition: width ease-in-out .5s;
+}
+
+.notelist--hidden {
+    width: 0;
+    transition: width ease-in-out .5s;
+}
+
+.notes {
+    margin: 1rem;
+}
